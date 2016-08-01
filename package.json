@@ -1,12 +1,24 @@
 {
-  "name": "application-name",
-  "version": "0.0.1",
+  "name": "test",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "node app"
   },
   "dependencies": {
     "express": "3.0.6",
-    "ejs": "*"
-  }
+  },
+  "description": "qqq",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tundra-s/test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tundra-s/test/issues"
+  },
+  "homepage": "https://github.com/tundra-s/test#readme"
 }

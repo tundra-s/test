@@ -1,0 +1,26 @@
+extends layout
+
+block content
+	.container
+		form.form-horisontal.login-form(name='login-form')
+			.form-group
+				label(for='input-username').col-lg-2.control-lebel Имя
+
+				.col-lg-10
+					input(name='username', value='name', type='text' placeholder="Имя").form-control#input-username
+
+			.form-group
+				label(for='input-password').col-lg-2.control-lebel Пароль
+
+				.col-lg-10
+					input(name='password', value='pass', type='password', placeholder="Пароль").form-control#input-password
+			
+			.form-group
+				.col-lg-offset-2.col-lg-10
+					button(type='submit', data-loading-text='Sending ...').btn.btn-primary Вход
+					span.help-block.error
+
+
+	script(src='vendor/bower_components/jquery/dist/jquery.js')
+	script(src='js/login.js')
+

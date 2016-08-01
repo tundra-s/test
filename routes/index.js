@@ -2,13 +2,15 @@ var checkAuth = require('../middleware/checkAuth');
 
 module.exports = function(app){
 
+	// console.log(checkAuth());
+
 	app.get('/', require('./frontpage').get);
+	app.get('/home', checkAuth, require('./frontpage').get);
 	app.get('/login', require('./login').get);
 	app.post('/login', require('./login').post);
-	app.post('/logout', require('./logout').post);
-	app.get('/chat', checkAuth , require('./chat').get);
-	app.get('/timer', require('./timer').get);
-	app.get('/test', require('./test').get);
+	app.get('/logout',checkAuth, require('./logout').post);
+	// app.get('/chat', checkAuth , require('./chat').get);
+	app.get('/timer',checkAuth, require('./timer').get);
 
 }
 

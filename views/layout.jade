@@ -1,0 +1,31 @@
+doctype
+html
+	head
+		title=title
+		link(rel='stylesheet', href='/vendor/bower_components/bootstrap/dist/css/bootstrap.css')
+		link(rel='stylesheet', href='/css/style.css')
+	body
+		.container 
+			.row
+				.navbar.navbar-default
+					.container
+						.navbar-header
+							button(type='button', data-toggle='collapse', data-target='#responsive-menu').navbar-toggle
+						.collapse.navbar-collapse#responsive-menu
+							ul.nav.navbar-nav
+								li 
+									a(href='/home') home
+							-if(!user){
+							ul.nav.navbar-nav
+								li
+									a(href='/login') login
+							-}else{
+							ul.nav.navbar-nav
+								li
+									a(href='/timer') timer
+							ul.nav.navbar-nav.navbar-right
+								li
+									a(href='/logout') logout
+							-}
+	
+block content

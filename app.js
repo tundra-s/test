@@ -22,9 +22,8 @@ var app = express();
 // });
 
 
-app.engine('ejs', require('ejs-locals'));
 app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
+app.set('view engine', 'jade');
 
 app.use(express.favicon()); // faveicon.ico
 app.use(express.logger('dev'));
