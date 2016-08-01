@@ -1,7 +1,4 @@
 
-/**
- * Module dependencies.
- */
 // подключаем экспресс
 var express = require('express');
 var http = require('http');
