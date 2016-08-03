@@ -117,12 +117,10 @@ exports.post = function(req, res){
 	switch(req.body.action){
 		case 'start': {
 			obj.mess = startCounter(req);
-			// obj.status = counters.status
 			break;
 		}
 		case 'stop': {
 			obj.mess = stopCounter();
-			// obj.status = counters.status;
 			break;
 		}
 		case 'get': {

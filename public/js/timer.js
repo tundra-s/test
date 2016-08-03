@@ -72,20 +72,31 @@ var parseHistory = function(data){
 
 }
 
+var createCounters = function(counters){
+	
+	var body = document.getElementById('wrapper');
+
+	if(!document.getElementById(counters.id)){
+		var str = document.createElement('div');
+		body.appendChild(str);
+		str.id = counters.id;
+	}else{
+		var str = document.getElementById(counters.id);
+	}
+
+	console.log('test');
+
+	return str;	
+}
+
 var drawCounters = function(coun){
 
 	
 	var counters = coun || lastUpd.history[0].counters;
-	var body = document.getElementById('wrapper');
 
 	for(var i = counters.length - 1; i >= 0; i--){
-		if(!document.getElementById(counters[i].id)){
-			var str = document.createElement('div');
-			body.appendChild(str);
-			str.id = counters[i].id;
-		}else{
-			var str = document.getElementById(counters[i].id);
-		}	
+		
+		var str = createCounters(counters[i]);
 		str.innerHTML = parseTime(counters[i]) + ' - ' + counters[i].name;
 	}
 
@@ -151,7 +162,10 @@ var get = function(){
 	}, parseHistory);
 }
 
+var init = function(){
+	get();
+		
 
-get();
+}();
 
 
