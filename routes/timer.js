@@ -1,4 +1,8 @@
 var dateAbs = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDay());
+	dateAbs.setHours(0);
+	dateAbs.setMinutes(0);
+	dateAbs.setSeconds(0);
+
 var fs = require('fs');
 var db ;
 var counters = null
@@ -19,6 +23,8 @@ var writeDb = function(){
 	var test = fs.writeFileSync('./routes/test.json', JSON.stringify(db));
 	return true;	
 };
+
+
 
 
 
