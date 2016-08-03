@@ -1,31 +1,6 @@
 var dateAbs = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDay());
 var fs = require('fs');
-var db = {
-		tundra : {
-
-			// Здесь у нас полностью история задач
-			// По дням день истории написан в date
-			history : [
-				{
-					date : dateAbs,
-
-					// здесь счетчики которые работали в этот день 
-					counters : [{
-						id : 'work',
-						name : 'Работа',
-						session : []
-					},
-					{
-						id : 'joy',
-						name : 'Развлечение',
-						session : []
-					}]
-				}
-			],
-			status : false
-
-		}
-};
+var db = {test: 'test'};
 var counters = null
 
 
@@ -79,7 +54,6 @@ var startCounter = function(id){
 		if(counters.status){
 			stopCounter();
 		}
-		console.log(counters);
 		now.session.push([new Date(), false]);
 		counters.status = id.body.id;
 		writeDb();
@@ -112,6 +86,7 @@ var stopCounter = function(){
 	if(now && !(now.session[now.session.length - 1][1])){
 		now.session[now.session.length - 1][1] = new Date();
 		counters.status = false;
+		writeDb();
 		return true;
 	}
 	return false
@@ -122,7 +97,7 @@ var getHistory = function(){
 }
 
 var userIni = function(user){
-	readDb(user);	
+	readDb(user);
 	counters = db[user];
 }
 
@@ -142,10 +117,12 @@ exports.post = function(req, res){
 	switch(req.body.action){
 		case 'start': {
 			obj.mess = startCounter(req);
+			// obj.status = counters.status
 			break;
 		}
 		case 'stop': {
-			obj.mess = stopCounter(req);
+			obj.mess = stopCounter();
+			// obj.status = counters.status;
 			break;
 		}
 		case 'get': {

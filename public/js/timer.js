@@ -66,7 +66,7 @@ var test = function(res){
 }
 
 var parseHistory = function(data){
-	lastUpd = data.history[0].counters;
+	lastUpd = data;
 	drawCounters(data.history[0].counters);
 	startTicker(drawCounters);
 
@@ -75,7 +75,7 @@ var parseHistory = function(data){
 var drawCounters = function(coun){
 
 	
-	var counters = coun || lastUpd;
+	var counters = coun || lastUpd.history[0].counters;
 	var body = document.getElementById('wrapper');
 
 	for(var i = counters.length - 1; i >= 0; i--){
@@ -86,7 +86,7 @@ var drawCounters = function(coun){
 		}else{
 			var str = document.getElementById(counters[i].id);
 		}	
-		str.innerHTML = parseTime(counters[i]) + ' - ' + counters[i].id;
+		str.innerHTML = parseTime(counters[i]) + ' - ' + counters[i].name;
 	}
 
 }
@@ -128,11 +128,11 @@ var start = function(id){
 	}, get)
 }
 
-var stop = function(id){
-	if(!id) return false;
+var stop = function(){
+	// if(!id) return false;
 	callToServer({
 		action: 'stop',
-		id: id
+		id: 'some'
 	}, get)
 }
 

@@ -1,1 +1,66 @@
-{"tundra":{"history":[{"date":"2016-08-02T21:00:00.000Z","counters":[{"id":"work","name":"Работа","session":[]},{"id":"joy","name":"Развлечение","session":[]},{"id":"other","name":"Прочее","session":[]}]}],"status":"joy"},"egor":{"history":[{"date":"2016-08-02T21:00:00.000Z","counters":[{"id":"work","name":"Работа","session":[]},{"id":"joy","name":"Развлечение","session":[]},{"id":"other","name":"Прочее","session":[]}]}],"status":"joy"}},"alex":{"history":[{"date":"2016-08-02T21:00:00.000Z","counters":[{"id":"work","name":"Работа","session":[]},{"id":"joy","name":"Развлечение","session":[]},{"id":"other","name":"Прочее","session":[]}]}],"status":"joy"}
+{"tundra":{
+	"history":[
+		{
+			"date":"2016-08-02T21:00:00.000Z",
+			"counters":[{
+				"id":"work",
+				"name":"Работа",
+				"session":[]
+			},
+			{
+				"id":"joy",
+				"name":"Развлечение",
+				"session":[]
+			},
+			{
+				"id":"other",
+				"name":"Прочее",
+				"session":[]
+			}]
+		}],
+	"status": false
+},
+"egor":{
+	"history":[
+		{
+			"date":"2016-08-02T21:00:00.000Z",
+			"counters":[{
+				"id":"work",
+				"name":"Работа",
+				"session":[]
+			},
+			{
+				"id":"joy",
+				"name":"Развлечение",
+				"session":[]
+			},
+			{
+				"id":"other",
+				"name":"Прочее",
+				"session":[]
+			}]
+		}],
+	"status": false
+},
+"alex":{
+	"history":[
+		{
+			"date":"2016-08-02T21:00:00.000Z",
+			"counters":[{
+				"id":"work",
+				"name":"Работа",
+				"session":[]
+			},
+			{
+				"id":"joy",
+				"name":"Развлечение",
+				"session":[]
+			},
+			{
+				"id":"other",
+				"name":"Прочее",
+				"session":[]
+			}]
+		}],
+	"status": false
+}}
