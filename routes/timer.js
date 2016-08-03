@@ -3,6 +3,12 @@ var fs = require('fs');
 var db = {test: 'test'};
 var counters = null
 
+var c = function(text){
+	console.log('--------------------------------------');
+	console.log(text);
+	console.log('--------------------------------------');
+}
+
 
 var readDb = function(user){
 	var test = fs.readFileSync('./routes/test.json', 'utf8');
@@ -18,7 +24,6 @@ var writeDb = function(){
 
 
 var getCounters = function(date){
-	// var date = new Date();
 	var date = !date ? new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDay()) : date;
 	if(!(date instanceof Date)) return false; 
 	date.setHours(0);
@@ -39,6 +44,9 @@ var getCounters = function(date){
 
 var getCounter = function(id, obj){
 	var history = obj || getCounters();
+	
+	c(history);
+
 	for (var i = 0; i < history.counters.length; i++) {
 		if(history.counters[i].id == id){
 			return history.counters[i];
