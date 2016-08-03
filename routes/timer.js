@@ -47,7 +47,7 @@ var getCounters = function(date){
 			c('======== DATE local');
 			c(date.valueOf())
 			c('======== DATE local');
-			c(counters.history[i].date).valueOf())
+			c((counters.history[i].date).valueOf())
 			c('======== DATE server');
 			c(new Date().toString());
 
