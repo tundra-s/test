@@ -1,179 +1,157 @@
-var day = document.getElementById('day');
-var hour = document.getElementById('hour');
-var min = document.getElementById('min');
-var second = document.getElementById('second');
-
-	
-var ls = window.localStorage;
-
-var filds = {
-	lern : {
-		name: 'lern',
-		state: ls.getItem('lern_state') || false, 
-		value: parseInt(ls.getItem('lern_value')) || 0, 
-		point: parseInt(ls.getItem('lern_point')) || false, 
-		names: 'l'
-	},
-	work : {
-		name: 'work', 
-		state: ls.getItem('work_state') || false, 
-		value: parseInt(ls.getItem('work_value')) || 0, 
-		point: parseInt(ls.getItem('work_point')) || false, 
-		names: 'w'
-	},
-	joy : {
-		name: 'joy', 
-		state: ls.getItem('joy_state') || false, 
-		value: parseInt(ls.getItem('joy_value')) || 0, 
-		point: parseInt(ls.getItem('joy_point')) || false, 
-		names: 'j'
-	}
-	
-}
-
-// document.getElementById('resetLS').onclick = function(){
-// 	window.localStorage.clear();
-// }
-
-
-for(var key in filds){
-
-	var f = function(key){
-
-		var time = 0;
-
-		if(filds[key].point && filds[key].point !== 'flase'){
-			
-			time = new Date() - filds[key].point;
-			
-			console.log('!!!' + key);
-
-			document.getElementById(filds[key].name).style.opacity = '1';
+var getAjax = function(){
+		var ajax;
+	  	try {
+	    	ajax = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch (e) {
+			try {
+				ajax = new ActiveXObject("Microsoft.XMLHTTP");
+			} catch (E) {
+	    		ajax = false;
+	    	}
 		}
-		
-		time = new Date(parseInt(filds[key].value) + time); 
+		if (!ajax && typeof XMLHttpRequest != 'undefined') {
+	    	ajax = new XMLHttpRequest();
+		}
+		return ajax;
+};
 
-		var d = (time.getDate() - 1).toString();
-		var h = time.getUTCHours().toString();
-		var m = time.getUTCMinutes().toString();
-		var s = time.getUTCSeconds().toString();
+var obj = {
+	action : 'start', // stop, get
+	id: 'work'
+}
 
-		document.getElementById(filds[key].names + '-day').innerHTML = d.length < 2 ? '0' + d : d;
-		document.getElementById(filds[key].names + '-hour').innerHTML = h.length < 2 ? '0' + h : h;
-		document.getElementById(filds[key].names + '-min').innerHTML = m.length < 2 ? '0' + m : m;
-		document.getElementById(filds[key].names + '-second').innerHTML = s.length < 2 ? '0' + s : s;
-		
-		return function(){
-			document.getElementById(filds[key].name).onclick = function(){ setObj(filds[key]) }
-		}();
+var lastUpd = null;
 
-	}(key);
+var dateAbs = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDay());
 
 
+var startTicker = function(){
+	var count = true;
+	
+	return function(cb){
+		if(count){
+			setInterval(function(){
+				cb();
+			}, 1000);
+		}
+		count = false;
+	};
+}()
+
+var callToServer = function(obj, cb){
+
+	var bool = false;
+	var ajax = getAjax();
+
+	ajax.open('POST', '/timer', true);
+	ajax.setRequestHeader('Content-type','application/json');
+	
+	ajax.send(JSON.stringify(obj));
+
+	ajax.onreadystatechange = function(){
+
+			if(ajax.readyState == 4){
+			
+				cb(JSON.parse(ajax.responseText));
+
+			}
+
+		}
 }
 
 
-var nowDo = function(){
-
-	for(var key in filds){
-
-		if(filds[key].state == 'true'){
-			return filds[key];
-		};
-	}
-
-	return null;
-
-}();
-
-function setObj (obj){
-
-	if(nowDo){
-
-		start(nowDo);
-
-	}
-
-	nowDo = obj;
-	
-	start(obj);
+var test = function(res){
+	console.log(res.mess);
 
 }
 
+var parseHistory = function(data){
+	lastUpd = data.history[0].counters;
+	drawCounters(data.history[0].counters);
+	startTicker(drawCounters);
 
-function setTimer(){
+}
+
+var drawCounters = function(coun){
+
 	
-	var date = new Date();
-	
-	var h = date.getHours().toString();
-	var m = date.getMinutes().toString();
-	var s = date.getSeconds().toString();
+	var counters = coun || lastUpd;
+	var body = document.getElementById('wrapper');
 
-
-	hour.innerHTML = h.length < 2 ? '0' + h : h;
-	min.innerHTML = m.length < 2 ? '0' + m : m;
-	second.innerHTML = s.length < 2 ? '0' + s : s;
-
-	if(nowDo && nowDo.state){
-		
-		var ld = document.getElementById(nowDo.names + '-day');
-		var lh = document.getElementById(nowDo.names + '-hour');
-		var lm = document.getElementById(nowDo.names + '-min');
-		var ls = document.getElementById(nowDo.names + '-second');
-
-		var time = new Date();
-
-		time = time - nowDo.point;
-
-		time = new Date(nowDo.value + time);
-
-		var lernd = (time.getDate() - 1).toString();
-		var lernh = time.getUTCHours().toString();
-		var lernm = time.getUTCMinutes().toString();
-		var lerns = time.getUTCSeconds().toString();
-
-		ld.innerHTML = lernd.length < 2 ? '0' + lernd : lernd;
-		lh.innerHTML = lernh.length < 2 ? '0' + lernh : lernh;
-		lm.innerHTML = lernm.length < 2 ? '0' + lernm : lernm;
-		ls.innerHTML = lerns.length < 2 ? '0' + lerns : lerns;
-
+	for(var i = counters.length - 1; i >= 0; i--){
+		if(!document.getElementById(counters[i].id)){
+			var str = document.createElement('div');
+			body.appendChild(str);
+			str.id = counters[i].id;
+		}else{
+			var str = document.getElementById(counters[i].id);
+		}	
+		str.innerHTML = parseTime(counters[i]) + ' - ' + counters[i].id;
 	}
 
 }
 
-function start(obj){
+var parseTime = function(time){
+	var session = 0;
+	if(time.session){
+		for(var i = 0; i < time.session.length; i++){
+			if(time.session[i][1]){
+				session += new Date(time.session[i][1]) - new Date(time.session[i][0]); 
+				// console.log(new Date(time.session[i][1]) - new Date(time.session[i][0])); 
+			}else{
+				session += new Date() - new Date(time.session[i][0]);
+			}
+		}
+	}
+	session = new Date(session);
 
-	if(obj.state == 'false' || !obj.state){
+	return plusZero(session.getUTCHours()) + ' : ' + plusZero(session.getMinutes()) + ' : ' + plusZero(session.getSeconds());
+}
 
-		obj.point = obj.point.valueOf() || new Date().valueOf();
-		obj.state = true;
 
-		document.getElementById(obj.name).style.opacity = '1';
-
-		window.localStorage.setItem(obj.name + '_point', obj.point.valueOf());
-		window.localStorage.setItem(obj.name + '_state', obj.state);
-
+var plusZero = function(num){
+	if((num + '').length < 2){
+		return '0' + num;
 	}else{
-
-		obj.state = false;
-		obj.value += new Date() - obj.point;
-		obj.point = false;
-
-		document.getElementById(obj.name).style.opacity = '0.5';
-
-		window.localStorage.setItem(obj.name + '_point', obj.point);
-		window.localStorage.setItem(obj.name + '_value', obj.value);
-		window.localStorage.setItem(obj.name + '_state', obj.state);
+		return num;
 	}
-
 }
 
-setTimer();
 
 
 
-var timer = setInterval(function(){
+var start = function(id){
+	if(!id) return false;
+	callToServer({
+		action: 'start',
+		id: id
+	}, get)
+}
 
-	setTimer();
+var stop = function(id){
+	if(!id) return false;
+	callToServer({
+		action: 'stop',
+		id: id
+	}, get)
+}
 
-},1000);
+var add = function(id, name){
+	if(!id) return false
+	callToServer({
+		action: 'add',
+		name: name,
+		id: id
+	}, parseHistory);
+}
+
+var get = function(){
+	callToServer({
+		action: 'get'
+	}, parseHistory);
+}
+
+
+get();
+
+

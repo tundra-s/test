@@ -11,9 +11,9 @@ var async = require('async');
 
 async.series([
 		open,
-		dropDatabase,
-		requireModels,
-		createUser,
+		dropDatabase
+		// requireModels,
+		// createUser,
 	], function(err, result){
 		
 		console.log(arguments);
@@ -31,7 +31,10 @@ function open (cb){
 function dropDatabase(cb){
 	
 	var db = mongoose.connection.db;
-	db.dropDatabase(cb)
+
+	console.log('Drop db');
+	
+	db.dropDatabase(cb);
 }
 
 function requireModels(cb){
@@ -54,6 +57,7 @@ function createUser(cb){
 	async.each(users, function(userData, cb){
 		
 		var user = new mongoose.models.User(userData);
+		console.log('save start');
 		user.save(cb);
 
 	}, cb);

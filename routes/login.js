@@ -25,8 +25,19 @@ exports.post = function(req, res, next){
 			}
 		}
 
-		req.session.user = user._id;
-		res.send({});
+
+		if(user){
+		
+
+			req.session.user = user._id;
+			res.json({login: 'user ' + user._id});
+		
+		}else{
+		
+			res.json({login: 'user not found'});
+		
+		}
+
 	})
 
 }

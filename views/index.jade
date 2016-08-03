@@ -4,9 +4,7 @@ block content
 	.container 
 		- if(user){
 			p Hello #{user} welcome to #{title}
-			h1 registred
-		-}else{
-			h1 Welcome to Lh
 		-}
+		h1 Your status: #{title}
 	include footer
 

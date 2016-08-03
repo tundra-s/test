@@ -6,3 +6,16 @@ body {
 .counter{
 	opacity: 0.5;
 }
+
+.counter * {
+	cursor: pointer;
+}
+
+.button-wrap .desc{
+	margin-left: 0;
+	transition: 0.3s;
+}
+
+.button-wrap:hover .desc{
+	margin-left: 1em;
+}

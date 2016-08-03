@@ -1,6 +1,7 @@
 var crypto = require('crypto');
 var async = require('async');
 var util = require('util');
+var HttpError = require('../error');
 
 var mongoose = require('../libs/mongoose');
 
@@ -54,25 +55,33 @@ schema.statics.authorize = 	function(username, password, cb){
 			function(user, cb){
 				if(user){
 					if(user.checkPassword(password)){
-					
+						
+						console.log('checkPassword : OK');
+
 						cb(null, user);
 					
 					}else{
 						
-						cb(new AuthError('Пароль неверен'));
+						// Надо обработать , это временно 
+						cb(null, false);
+						// cb(new AuthError('Пароль неверен'));
 					
 					}					
 				}else{
 
-					var user = new User({username: username, password: password});
+					cb(null, false);
 
-					user.save(function(err){
+					// убрал что бы не регистрировались все подряд
 
-						if(err) return cb(err);
+					// var user = new User({username: username, password: password});
 
-						cb(null, user);
+					// user.save(function(err){
 
-					})
+						// if(err) return cb(err);
+
+						// cb(null, user);
+
+					// })
 				}
 			}
 		], cb);
