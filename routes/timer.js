@@ -26,6 +26,8 @@ var writeDb = function(){
 var getCounters = function(date){
 	var date = !date ? new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDay()) : date;
 	if(!(date instanceof Date)) return false; 
+	c('777');
+
 	date.setHours(0);
 	date.setMinutes(0);
 	date.setSeconds(0);
@@ -44,9 +46,6 @@ var getCounters = function(date){
 
 var getCounter = function(id, obj){
 	var history = obj || getCounters();
-	
-	c(history);
-
 	for (var i = 0; i < history.counters.length; i++) {
 		if(history.counters[i].id == id){
 			return history.counters[i];
