@@ -1,6 +1,6 @@
 var dateAbs = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDay());
 var fs = require('fs');
-var db = {test: 'test'};
+var db ;
 var counters = null
 
 var c = function(text){
@@ -33,8 +33,12 @@ var getCounters = function(date){
 	var result;
 	if(counters.history){
 		// Сделать инверсию цикла что бы он искал с конца массива 
+			
+			c('getCounters');
+			c(counters);
+			c(counters.history);
+
 		for(var i = 0; i < counters.history.length; i++){
-			c('777');
 			if(new Date(counters.history[i].date).valueOf() == date.valueOf()){
 				result = counters.history[i];
 			}
@@ -45,6 +49,8 @@ var getCounters = function(date){
 }
 
 var getCounter = function(id, obj){
+	c('getCounter');
+	c(counters);
 	var history = obj || getCounters();
 	for (var i = 0; i < history.counters.length; i++) {
 		if(history.counters[i].id == id){
