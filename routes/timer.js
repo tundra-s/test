@@ -30,7 +30,6 @@ var getCounters = function(date){
 	date.setHours(0);
 	date.setMinutes(0);
 	date.setSeconds(0);
-	var result;
 	if(counters.history){
 		// Сделать инверсию цикла что бы он искал с конца массива 
 			
@@ -38,11 +37,13 @@ var getCounters = function(date){
 			c(counters);
 			c(counters.history);
 
+		var result;
 		for(var i = 0; i < counters.history.length; i++){
 			if(new Date(counters.history[i].date).valueOf() == date.valueOf()){
 				result = counters.history[i];
 			}
 		}
+		c(result);
 	}
 	return result || false;
 
@@ -52,6 +53,8 @@ var getCounter = function(id, obj){
 	c('getCounter');
 	c(counters);
 	var history = obj || getCounters();
+	c('getCounter');
+	c(history);
 	for (var i = 0; i < history.counters.length; i++) {
 		if(history.counters[i].id == id){
 			return history.counters[i];
