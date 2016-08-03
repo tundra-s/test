@@ -26,6 +26,7 @@ var writeDb = function(){
 var getCounters = function(date){
 	var date = !date ? new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDay()) : date;
 	if(!(date instanceof Date)) return false; 
+	var result;
 
 	date.setHours(0);
 	date.setMinutes(0);
@@ -37,11 +38,10 @@ var getCounters = function(date){
 			c(counters);
 			c(counters.history);
 
-		var result;
 		for(var i = 0; i < counters.history.length; i++){
 			c(i);
-			c(' Date');
-			c(new Date(counters.history[i].date).valueOf());
+			c('======== Arr');
+			c(counters.history.length);
 			c(date.valueOf())
 
 			if(new Date(counters.history[i].date).valueOf() == date.valueOf()){
