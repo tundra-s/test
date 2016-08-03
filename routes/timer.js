@@ -40,15 +40,16 @@ var getCounters = function(date){
 
 		for(var i = 0; i < counters.history.length; i++){
 			c(i);
-			c('======== Arr');
 			c(counters.history.length);
 			c(date.valueOf())
 
 			if(new Date(counters.history[i].date).valueOf() == date.valueOf()){
+				c('======== counters.history');
 				c(counters.history[i]);
 				result = counters.history[i];
 			}
 		}
+		c('======== result');
 		c(result);
 	}
 	return result || false;
