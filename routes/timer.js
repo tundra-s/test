@@ -45,6 +45,7 @@ var getCounters = function(date){
 			c(date.valueOf())
 
 			if(new Date(counters.history[i].date).valueOf() == date.valueOf()){
+				c(counters.history[i]);
 				result = counters.history[i];
 			}
 		}
