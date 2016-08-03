@@ -69,19 +69,19 @@ schema.statics.authorize = 	function(username, password, cb){
 					}					
 				}else{
 
-					// cb(null, false);
+					cb(null, false);
 
 					// убрал что бы не регистрировались все подряд
 
-					var user = new User({username: username, password: password});
+					// var user = new User({username: username, password: password});
 
-					user.save(function(err){
+					// user.save(function(err){
 
-						if(err) return cb(err);
+						// if(err) return cb(err);
 
-						cb(null, user);
+						// cb(null, user);
 
-					})
+					// })
 				}
 			}
 		], cb);
