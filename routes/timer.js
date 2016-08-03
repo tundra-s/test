@@ -42,9 +42,15 @@ var getCounters = function(date){
 			
 
 		for(var i = 0; i < counters.history.length; i++){
-			c('======== DATE');
-			c(new Date(counters.history[i].date).valueOf());
+			c('======== DATE abs');
+			c(dateAbs.valueOf());
+			c('======== DATE local');
 			c(date.valueOf())
+			c('======== DATE local');
+			c(counters.history[i].date).valueOf())
+			c('======== DATE server');
+			c(new Date().toString());
+
 
 			if(new Date(counters.history[i].date).valueOf() == date.valueOf()){
 				c(counters.history[i]);
