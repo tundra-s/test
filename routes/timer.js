@@ -39,6 +39,7 @@ var getCounters = function(date){
 
 var getCounter = function(id, obj){
 	var history = obj || getCounters();
+	console.log(history);
 	for (var i = 0; i < history.counters.length; i++) {
 		if(history.counters[i].id == id){
 			return history.counters[i];

@@ -84,8 +84,6 @@ var createCounters = function(counters){
 		var str = document.getElementById(counters.id);
 	}
 
-	console.log('test');
-
 	return str;	
 }
 
