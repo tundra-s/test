@@ -69,7 +69,7 @@ schema.statics.authorize = 	function(username, password, cb){
 					}					
 				}else{
 
-					cb(null, false);
+					// cb(null, false);
 
 					// убрал что бы не регистрировались все подряд
 
