@@ -34,22 +34,17 @@ var getCounters = function(date){
 	if(counters.history){
 		// Сделать инверсию цикла что бы он искал с конца массива 
 			
-			c('getCounters');
-			c(counters);
-			c(counters.history);
 
 		for(var i = 0; i < counters.history.length; i++){
-			c(i);
-			c(counters.history.length);
+			c('======== DATE');
+			c(new Date(counters.history[i].date).valueOf());
 			c(date.valueOf())
 
 			if(new Date(counters.history[i].date).valueOf() == date.valueOf()){
-				c('======== counters.history');
 				c(counters.history[i]);
 				result = counters.history[i];
 			}
 		}
-		c('======== result');
 		c(result);
 	}
 	return result || false;
