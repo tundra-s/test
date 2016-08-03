@@ -71,7 +71,7 @@ schema.statics.authorize = 	function(username, password, cb){
 
 					cb(null, false);
 
-					убрал что бы не регистрировались все подряд
+					// убрал что бы не регистрировались все подряд
 
 					var user = new User({username: username, password: password});
 
