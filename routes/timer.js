@@ -39,7 +39,6 @@ var getCounters = function(date){
 
 var getCounter = function(id, obj){
 	var history = obj || getCounters();
-	console.log(history);
 	for (var i = 0; i < history.counters.length; i++) {
 		if(history.counters[i].id == id){
 			return history.counters[i];
@@ -48,15 +47,15 @@ var getCounter = function(id, obj){
 	return false;
 }
 
-var startCounter = function(id){
-	var now = getCounter(id.body.id);
+var startCounter = function(req){
+	var now = getCounter(req.body.id); // 
 	if(!now) return false;
-	if(counters.status !== id.body.id || !now.session.length || now.session[now.session.length - 1][1]){
+	if(counters.status !== req.body.id || !now.session.length || now.session[now.session.length - 1][1]){
 		if(counters.status){
 			stopCounter();
 		}
 		now.session.push([new Date(), false]);
-		counters.status = id.body.id;
+		counters.status = req.body.id;
 		writeDb();
 		return now.session
 	}else{
