@@ -32,9 +32,9 @@ var getCounters = function(date){
 	date.setSeconds(0);
 	var result;
 	if(counters.history){
-	c('777');
 		// Сделать инверсию цикла что бы он искал с конца массива 
 		for(var i = 0; i < counters.history.length; i++){
+			c('777');
 			if(new Date(counters.history[i].date).valueOf() == date.valueOf()){
 				result = counters.history[i];
 			}
