@@ -67,7 +67,8 @@ var test = function(res){
 
 var parseHistory = function(data){
 	lastUpd = data;
-	drawCounters(data.history[0].counters);
+	console.log(data);
+	drawCounters(data.history.counters);
 	startTicker(drawCounters);
 
 }
@@ -90,7 +91,7 @@ var createCounters = function(counters){
 var drawCounters = function(coun){
 
 	
-	var counters = coun || lastUpd.history[0].counters;
+	var counters = coun || lastUpd.history.counters;
 
 	for(var i = counters.length - 1; i >= 0; i--){
 		
@@ -154,10 +155,13 @@ var add = function(id, name){
 	}, parseHistory);
 }
 
-var get = function(){
+var get = function(d){
 	callToServer({
-		action: 'get'
+		action: 'get',
+		date: d || dateAbs
 	}, parseHistory);
+
+	return console.log("(1) = " + JSON.stringify(d) || "(2) = " + JSON.stringify(dateAbs));
 }
 
 var init = function(){
