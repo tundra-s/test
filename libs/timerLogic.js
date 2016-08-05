@@ -134,7 +134,7 @@ var timer = function(req, res){
 
 	// стартуем счетчик
 	var startCounter = function(id){
-		if(id){
+		if(id && id != userDataBase.status){
 			var counter = getCounter(id);
 			counter.session.push([new Date(), false]);
 			
@@ -149,6 +149,10 @@ var timer = function(req, res){
 			writeDataBase();
 
 			return defaultObject;
+		}else{
+			defaultObject.mess = [];
+			log('This counter already started !');
+			return defaultObject
 		}
 	}
 

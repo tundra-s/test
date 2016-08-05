@@ -52,7 +52,9 @@ var callToServer = function(obj, cb){
 
 			if(ajax.readyState == 4){
 			
-				cb(JSON.parse(ajax.responseText));
+				if(JSON.parse(ajax.responseText)){
+					cb(JSON.parse(ajax.responseText));
+				}
 
 			}
 
@@ -96,6 +98,9 @@ var createCounters = function(counters){
 		var str = document.createElement('div');
 		body.appendChild(str);
 		str.id = counters.id;
+		str.onclick = function(){
+			start(this.id);
+		}
 	}else{
 		var str = document.getElementById(counters.id);
 	}
