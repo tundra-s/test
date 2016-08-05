@@ -1,1 +1,121 @@
-{"tundra":{"history":[{"date":"2016-08-04T21:00:00.000Z","counters":[{"id":"work","name":"Работа","session":[["2016-08-04T22:36:12.005Z",false]]},{"id":"joy","name":"Развлечение","session":[]},{"id":"other","name":"Прочее","session":[]}]}],"status":"work"},"egor":{"history":[{"date":"2016-08-04T21:00:00.000Z","counters":[{"id":"work","name":"Работа","session":[]},{"id":"joy","name":"Развлечение","session":[]},{"id":"other","name":"Прочее","session":[]}]}],"status":false},"alex":{"history":[{"date":"2016-08-04T21:00:00.000Z","counters":[{"id":"work","name":"Работа","session":[]},{"id":"joy","name":"Развлечение","session":[]},{"id":"other","name":"Прочее","session":[]}]}],"status":false}}
+
+{"tundra":{
+	"history":[
+		{
+			"date":"2016-08-03T21:00:00.000Z",
+			"counters":[{
+				"id":"work",
+				"name":"Работа",
+				"session":[]
+			},
+			{
+				"id":"joy",
+				"name":"Развлечение",
+				"session":[]
+			},
+			{
+				"id":"other",
+				"name":"Прочее",
+				"session":[]
+			}]
+		}],
+	"pattern" : {
+			"date": false,
+			"counters":[{
+				"id":"work",
+				"name":"Работа",
+				"session":[]
+			},
+			{
+				"id":"joy",
+				"name":"Развлечение",
+				"session":[]
+			},
+			{
+				"id":"other",
+				"name":"Прочее",
+				"session":[]
+			}]
+		},
+	"status": false
+},
+"egor":{
+	"history":[
+		{
+			"date":"2016-08-03T21:00:00.000Z",
+			"counters":[{
+				"id":"work",
+				"name":"Работа",
+				"session":[]
+			},
+			{
+				"id":"joy",
+				"name":"Развлечение",
+				"session":[]
+			},
+			{
+				"id":"other",
+				"name":"Прочее",
+				"session":[]
+			}]
+		}],
+	"pattern" : {
+			"date": false,
+			"counters":[{
+				"id":"work",
+				"name":"Работа",
+				"session":[]
+			},
+			{
+				"id":"joy",
+				"name":"Развлечение",
+				"session":[]
+			},
+			{
+				"id":"other",
+				"name":"Прочее",
+				"session":[]
+			}]
+		},
+	"status": false
+},
+"alex":{
+	"history":[
+		{
+			"date":"2016-08-03T21:00:00.000Z",
+			"counters":[{
+				"id":"work",
+				"name":"Работа",
+				"session":[]
+			},
+			{
+				"id":"joy",
+				"name":"Развлечение",
+				"session":[]
+			},
+			{
+				"id":"other",
+				"name":"Прочее",
+				"session":[]
+			}]
+		}],
+	"pattern" : {
+			"date": false,
+			"counters":[{
+				"id":"work",
+				"name":"Работа",
+				"session":[]
+			},
+			{
+				"id":"joy",
+				"name":"Развлечение",
+				"session":[]
+			},
+			{
+				"id":"other",
+				"name":"Прочее",
+				"session":[]
+			}]
+		},
+	"status": false
+}}

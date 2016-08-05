@@ -68,9 +68,24 @@ var test = function(res){
 var parseHistory = function(data){
 	lastUpd = data;
 	console.log(data);
-	drawCounters(data.history.counters);
-	startTicker(drawCounters);
+	if(data.mess){
+		parseMess(data.mess);
+	}
+	if(data.history != null){
+		drawCounters(data.history.counters);
+		startTicker(drawCounters);
+	}	
 
+}
+
+var parseMess = function(mess){
+	if(mess instanceof Array){
+		for (var i = 0; i < mess.length; i++) {
+			console.log('------------------------');
+			console.log(mess[i]);
+			console.log('------------------------');
+		}
+	}
 }
 
 var createCounters = function(counters){
@@ -118,16 +133,14 @@ var parseTime = function(time){
 	return plusZero(session.getUTCHours()) + ' : ' + plusZero(session.getMinutes()) + ' : ' + plusZero(session.getSeconds());
 }
 
-
+// добавляем в строку к однозначным значениям ноль
 var plusZero = function(num){
-	if((num + '').length < 2){
+	if((num += '').length < 2){
 		return '0' + num;
 	}else{
 		return num;
 	}
 }
-
-
 
 
 var start = function(id){
@@ -160,8 +173,6 @@ var get = function(d){
 		action: 'get',
 		date: d || dateAbs
 	}, parseHistory);
-
-	return console.log("(1) = " + JSON.stringify(d) || "(2) = " + JSON.stringify(dateAbs));
 }
 
 var init = function(){
@@ -169,5 +180,9 @@ var init = function(){
 		
 
 }();
+
+
+
+
 
 
