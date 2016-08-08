@@ -5,7 +5,7 @@
 			"counters":[{
 				"id":"work",
 				"name":"Работа",
-				"session":[[data, false]]
+				"session":[]
 			},
 			{
 				"id":"joy",
@@ -101,8 +101,18 @@
 				"session":[]
 			},
 			{
+				"id":"sleep",
+				"name":"Сон",
+				"session":[]
+			},
+			{
+				"id":"lern",
+				"name":"Обучение",
+				"session":[]
+			},
+			{
 				"id":"other",
-				"name":"Прочее",
+				"name":"Проеб",
 				"session":[]
 			}]
 		},
@@ -141,8 +151,18 @@
 				"session":[]
 			},
 			{
+				"id":"sleep",
+				"name":"Сон",
+				"session":[]
+			},
+			{
+				"id":"lern",
+				"name":"Обучение",
+				"session":[]
+			},
+			{
 				"id":"other",
-				"name":"Прочее",
+				"name":"Проеб",
 				"session":[]
 			}]
 		},
@@ -181,8 +201,18 @@
 				"session":[]
 			},
 			{
+				"id":"sleep",
+				"name":"Сон",
+				"session":[]
+			},
+			{
+				"id":"lern",
+				"name":"Обучение",
+				"session":[]
+			},
+			{
 				"id":"other",
-				"name":"Прочее",
+				"name":"Проеб",
 				"session":[]
 			}]
 		},

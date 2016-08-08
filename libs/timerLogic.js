@@ -58,6 +58,7 @@ var timer = function(req, res){
 			return false;
 		};
 		
+
 		log('Database : db has been Readed !!!');
 		
 		return true; 
@@ -100,6 +101,37 @@ var timer = function(req, res){
 
 				var newDay = doubleObj({}, pattern);
 				newDay.date = today;
+
+				var statusNew = false;
+
+				var tomorow;
+				if(tomorow = userDataBase.history[userDataBase.history.length - 1]){
+					console.log(1);
+					if(userDataBase.status){
+						console.log(2);
+						for (var i = 0; i < tomorow.counters.length; i++) {
+							console.log(3);
+							if(tomorow.counters[i].id == userDataBase.status){
+								console.log(4);
+								if(!tomorow.counters[i].session[tomorow.counters[i].session.length - 1][1]){
+									console.log(5);
+
+									var lastDate = new Date(today);
+									lastDate.setSeconds(lastDate.getSeconds() - 1);
+									
+									tomorow.counters[i].session[tomorow.counters[i].session.length - 1][1] = lastDate;
+
+									newDay.counters[i].session.push([getRoundedDate(), false]);
+									
+									statusNew = true;
+								}
+							}
+						}
+					}
+				}
+
+				console.log(statusNew);
+
 				userDataBase.history.push(newDay);
 
 				writeDataBase();

@@ -22,7 +22,7 @@ var obj = {
 
 var lastUpd = null;
 
-var dateAbs = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDay());
+var dateAbs = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
 
 
 var startTicker = function(){
@@ -75,9 +75,63 @@ var parseHistory = function(data){
 	}
 	if(data.history != null){
 		drawCounters(data.history.counters);
-		startTicker(drawCounters);
+		startTicker(tick);
 	}	
 
+}
+
+var tick = function(){
+	drawCounters();
+	drawStateWrapper();
+}
+
+var drawStateWrapper = function(){
+	var wrapper = document.getElementById('state');
+	if(wrapper){
+		var d = new Date(dateAbs);
+		d.setHours(24);
+		var nowDate = new Date();
+		var sutki = d.valueOf() - dateAbs.valueOf();
+		var nowPt = new Date().valueOf() - dateAbs.valueOf();
+		var percent = nowPt / sutki * 100;
+		wrapper.style.height = 30 + 'px';
+		wrapper.style.width = percent + '%';
+		drawStateCounters();
+	}
+}
+
+var drawStateCounters = function(){
+	var counters = lastUpd.history.counters;
+	var wrapper = document.getElementById('state');
+
+	for (var i = counters.length - 1; i >= 0; i--) {
+		var stateBlock;
+		var create = false;
+		if(!(stateBlock = document.getElementById('state-block-' + counters[i].id))){
+			var stateBlock = document.createElement('div');
+			stateBlock.id = 'state-block-' + counters[i].id;
+			create = true;
+		}
+
+		stateBlock.className = 'state-block';
+
+
+		if(counters[i].id == lastUpd.status){
+
+			stateBlock.className += ' state-active';
+
+		}
+
+		var dateTodayDown = new Date().valueOf() - dateAbs.valueOf();
+
+		var percent = parseTime(counters[i], true) / dateTodayDown * 100;
+
+		stateBlock.style.width = percent + '%';
+
+		if(create){
+			wrapper.appendChild(stateBlock);
+		}
+	}
 }
 
 var parseMess = function(mess){
@@ -98,6 +152,7 @@ var createCounters = function(counters){
 		var str = document.createElement('div');
 		body.appendChild(str);
 		str.id = counters.id;
+		str.className = 'counter';
 		str.onclick = function(){
 			start(this.id);
 		}
@@ -110,18 +165,27 @@ var createCounters = function(counters){
 
 var drawCounters = function(coun){
 
-	
 	var counters = coun || lastUpd.history.counters;
 
 	for(var i = counters.length - 1; i >= 0; i--){
 		
 		var str = createCounters(counters[i]);
-		str.innerHTML = parseTime(counters[i]) + ' - ' + counters[i].name;
+		
+		if(lastUpd && lastUpd.status == counters[i].id){
+			str.className = 'counter counterActive';
+		}else{
+			str.className = 'counter';
+		}
+
+		var box = '<div class="state-box box-'+counters[i].id+'"></div>';
+
+		str.innerHTML =  box + parseTime(counters[i]) + ' - ' + counters[i].name;
 	}
 
 }
 
-var parseTime = function(time){
+var parseTime = function(time, bool){
+	var bool = bool || false;
 	var session = 0;
 	if(time.session){
 		for(var i = 0; i < time.session.length; i++){
@@ -135,7 +199,11 @@ var parseTime = function(time){
 	}
 	session = new Date(session);
 
-	return plusZero(session.getUTCHours()) + ' : ' + plusZero(session.getMinutes()) + ' : ' + plusZero(session.getSeconds());
+	if(!bool){
+		return plusZero(session.getUTCHours()) + ' : ' + plusZero(session.getMinutes()) + ' " ' + plusZero(session.getSeconds());
+	}else{
+		return session.valueOf();
+	}
 }
 
 // добавляем в строку к однозначным значениям ноль
