@@ -249,7 +249,7 @@ var get = function(d){
 }
 
 
-var start = function(d){
+var clear = function(d){
 	callToServer({
 		action: 'clear',
 		date: d || dateAbs
