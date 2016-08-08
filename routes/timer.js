@@ -10,6 +10,8 @@ exports.post = function(req, res){
 
 	timer = require('../libs/timerLogic.js')(req, res);
 
+	console.log('++');
+
 	var responseObject;
 
 	switch(req.body.action){
