@@ -74,7 +74,9 @@ var parseHistory = function(data){
 		parseMess(data.mess);
 	}
 	if(data.history != null){
+
 		drawCounters(data.history.counters);
+		
 		startTicker(tick);
 	}	
 
