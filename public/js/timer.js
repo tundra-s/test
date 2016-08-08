@@ -248,6 +248,17 @@ var get = function(d){
 	}, parseHistory);
 }
 
+
+var start = function(d){
+	callToServer({
+		action: 'clear',
+		date: d || dateAbs
+	}, parseHistory);
+}
+
+
+
+
 var init = function(){
 	get();
 		

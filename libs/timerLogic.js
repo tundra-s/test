@@ -249,7 +249,10 @@ var timer = function(req, res){
 	var clear = function(){
 		delete userDataBase.history[userDataBase.history.length - 1];
 
+		console.log('+++++++');
+
 		writeDataBase();
+
 		log('clear run');
 		return defaultObject;
 	}

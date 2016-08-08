@@ -29,6 +29,10 @@ exports.post = function(req, res){
 			responseObject = timer.add();
 			break;
 		}
+		case 'clear': {
+			responseObject = timer.clear();
+			break;
+		}
 		default: {
 			responseObject = timer.default();
 		}
