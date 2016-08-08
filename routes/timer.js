@@ -30,6 +30,7 @@ exports.post = function(req, res){
 			break;
 		}
 		case 'clear': {
+			console.log('+++++++');
 			responseObject = timer.clear();
 			break;
 		}
