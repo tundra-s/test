@@ -246,6 +246,10 @@ var timer = function(req, res){
 		return defaultObject;
 	}
 
+	var clear = function(){
+		delete userDataBase.history[userDataBase.history.length - 1];
+	}
+
 	return {
 		// старт счетчика 
 		start : startCounter,
@@ -255,6 +259,8 @@ var timer = function(req, res){
 		get : getHistory,
 		// остановка счетчика 
 		add : returnDefaultObject,
+		// 
+		clear : clear,
 		// остановка счетчика 
 		default : returnDefaultObject,
 	}
