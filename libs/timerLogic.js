@@ -247,17 +247,30 @@ var timer = function(req, res){
 	}
 
 	var clear = function(){
-		console.log('+++++++');
-		
-		delete userDataBase.history[userDataBase.history.length - 1];
 
-		console.log('+++++++');
+		console.log(dataBase.tundra.history.length);
+
+		var test = [];
+
+		for (var i = 0; i < dataBase.tundra.history.length - 1; i++) {
+			test.push(dataBase.tundra.history[i]);
+		}
+
+
+		console.log('1 = ' + test.length);
+
+		dataBase.tundra.status = false;
+		dataBase.tundra.history = test;
 
 		writeDataBase();
 
-		log('clear run');
+		dataBase = null;
+		userDataBase = null;
+		userToday = null;
+		readDataBase();
+		checkToday();
 
-		return defaultObject;
+		return getHistory();
 	}
 
 	return {

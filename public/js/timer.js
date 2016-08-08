@@ -68,14 +68,20 @@ var test = function(res){
 }
 
 var parseHistory = function(data){
-	lastUpd = data;
+	
 	console.log(data);
 	if(data.mess){
 		parseMess(data.mess);
 	}
 	if(data.history != null){
+		
+		lastUpd = data;
 
-		drawCounters(data.history.counters);
+		console.log(data.history.counters);
+
+		if(data.history.counters){
+			drawCounters(data.history.counters);
+		}
 		
 		startTicker(tick);
 	}	
