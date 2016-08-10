@@ -5,11 +5,16 @@ exports.get = function(req, res){
 		return date.getYears() + '.' + date.getMonth() + '.' + date.getDate() + ' - ' + date.getHours() + ':' + date.getMinutes() + '"' + date.getSeconds();
 	}
 
+	var user = false;
+
+	if(req.user){
+		user = req.user.username;
+	}
+
 	res.render('index', {
 
 		title: req.session.user ? 'registred' : 'unregistred',
-		user: req.user.username || false,
-		setDate : setDate
+		user: user
 
 	});
 }

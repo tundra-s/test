@@ -191,7 +191,7 @@ var drawCounters = function(coun){
 
 		var box = '<div class="state-box box-'+counters[i].id+'"></div>';
 
-		str.innerHTML =  box + parseTime(counters[i]) +  counters[i].name;
+		str.innerHTML =  box + parseTime(counters[i]) + "<div class='counter-name'>" + counters[i].name;
 	}
 
 }
