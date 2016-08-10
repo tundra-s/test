@@ -106,7 +106,7 @@ var drawStateWrapper = function(){
 		var sutki = d.valueOf() - dateAbs.valueOf();
 		var nowPt = new Date().valueOf() - dateAbs.valueOf();
 		var percent = nowPt / sutki * 100;
-		wrapper.style.height = 30 + 'px';
+		wrapper.style.height = 100 + '%';
 		wrapper.style.width = percent + '%';
 		drawStateCounters();
 	}
