@@ -10,7 +10,7 @@ exports.post = function(req, res){
 
 	timer = require('../libs/timerLogic.js')(req, res);
 
-	console.log('++');
+	console.log('===');
 
 	var responseObject;
 
@@ -24,7 +24,7 @@ exports.post = function(req, res){
 			break;
 		}
 		case 'get': {
-			responseObject = timer.get();
+			responseObject = timer.get(req.body);
 			break;
 		}
 		case 'add': {
@@ -32,7 +32,6 @@ exports.post = function(req, res){
 			break;
 		}
 		case 'clear': {
-			console.log('+++++++');
 			responseObject = timer.clear();
 			break;
 		}

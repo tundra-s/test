@@ -20,6 +20,8 @@ var obj = {
 	id: 'work'
 }
 
+var lastUpdDate = null;
+
 var lastUpd = null;
 
 var dateAbs = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
@@ -27,7 +29,6 @@ var dateAbs = new Date(new Date().getFullYear(), new Date().getMonth(), new Date
 
 var startTicker = function(){
 	var count = true;
-	
 	return function(cb){
 		if(count){
 			setInterval(function(){
@@ -70,25 +71,28 @@ var test = function(res){
 var parseHistory = function(data){
 	
 	console.log(data);
-	if(data.mess){
-		parseMess(data.mess);
-	}
-	if(data.history != null){
-		
-		lastUpd = data;
-
-		console.log(data.history.counters);
-
-		if(data.history.counters){
-			drawCounters(data.history.counters);
+	if(data){	
+		if(data.mess){
+			parseMess(data.mess);
 		}
-		
-		startTicker(tick);
-	}	
+		if(data.history != null){
+			
+			lastUpd = data;
+
+			console.log(data.history.counters);
+
+			if(data.history.counters){
+				drawCounters(data.history.counters);
+			}
+			
+			startTicker(tick);
+		}	
+	}
 
 }
 
 var tick = function(){
+	get();
 	drawCounters();
 	drawStateWrapper();
 }
@@ -250,9 +254,16 @@ var add = function(id, name){
 }
 
 var get = function(d){
+	var status = null;
+
+	if(lastUpd && lastUpd.status){
+		status = lastUpd.status;
+	}
+
 	callToServer({
 		action: 'get',
-		date: d || dateAbs
+		date: d || dateAbs,
+		status : status
 	}, parseHistory);
 }
 

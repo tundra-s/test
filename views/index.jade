@@ -1,10 +1,14 @@
+- var date = setDate(1470698117018)
+- var date = "some"
 extends layout
 
 block content
 	.container 
+		p Your status: #{title}
 		- if(user){
-			p Hello #{user} welcome to #{title}
+			h1 Hello #{user} 
+			ul
+				li #{date}
 		-}
-		h1 Your status: #{title}
 	include footer
 

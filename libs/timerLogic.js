@@ -227,16 +227,28 @@ var timer = function(req, res){
 
 	// получение обновления 
 
-	var getHistory = function(date){
-		defaultObject.history = userToday;
-		defaultObject.status = userDataBase.status;
+	var getHistory = function(data){
+		
+		if(data.status == null || data.status != userDataBase.status){
+			defaultObject.history = userToday;
+			defaultObject.status = userDataBase.status;
 
-		return defaultObject;
+			return defaultObject;
+		}
+
+		return null;
+		
+		
+
 	}
 
 	// функция инициализатор
 	var ini = function(){
+		
+		console.log()
+
 		readDataBase();
+
 		checkToday();
 	}();
 
@@ -248,19 +260,19 @@ var timer = function(req, res){
 
 	var clear = function(){
 
-		console.log(dataBase.tundra.history.length);
+		console.log(dataBase[userName].history.length);
 
 		var test = [];
 
-		for (var i = 0; i < dataBase.tundra.history.length - 1; i++) {
-			test.push(dataBase.tundra.history[i]);
+		for (var i = 0; i < dataBase[userName].history.length - 1; i++) {
+			test.push(dataBase[userName].history[i]);
 		}
 
 
 		console.log('1 = ' + test.length);
 
-		dataBase.tundra.status = false;
-		dataBase.tundra.history = test;
+		dataBase[userName].status = false;
+		dataBase[userName].history = test;
 
 		writeDataBase();
 
