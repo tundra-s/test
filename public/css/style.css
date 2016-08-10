@@ -2,7 +2,7 @@
 @media (min-width: 768px) {
 	body {
 	  padding: 30px;
-	  /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
+	  font: 26px "Lucida Grande", Helvetica, Arial, sans-serif;
 	  background: green;
 	}
 }
