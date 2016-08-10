@@ -4,7 +4,7 @@
 	body {
 	  padding: 30px;
 	  font: 26px "Lucida Grande", Helvetica, Arial, sans-serif;
-	  background: green;
+	  /*background: green;*/
 	}
 }
 
@@ -12,7 +12,7 @@
 	body {
 	  padding: 30px;
 	  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-	  background: red;
+	  /*background: red;*/
 	}
 }
 .wapper{
