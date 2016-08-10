@@ -191,7 +191,7 @@ var drawCounters = function(coun){
 
 		var box = '<div class="state-box box-'+counters[i].id+'"></div>';
 
-		str.innerHTML =  box + parseTime(counters[i]) + ' - ' + counters[i].name;
+		str.innerHTML =  box + parseTime(counters[i]) +  counters[i].name;
 	}
 
 }
@@ -212,7 +212,7 @@ var parseTime = function(time, bool){
 	session = new Date(session);
 
 	if(!bool){
-		return plusZero(session.getUTCHours()) + ' : ' + plusZero(session.getMinutes()) + ' " ' + plusZero(session.getSeconds());
+		return "<div class='counter-string'>" + plusZero(session.getUTCHours()) + ' : ' + plusZero(session.getMinutes()) + ' " ' + plusZero(session.getSeconds()) + "</div>";
 	}else{
 		return session.valueOf();
 	}

@@ -1,20 +1,82 @@
 
-
-@media (min-width: 768px) {
-	body {
-	  padding: 30px;
-	  font: 26px "Lucida Grande", Helvetica, Arial, sans-serif;
-	  /*background: green;*/
-	}
+.counter-string{
+	display: inline-block;
 }
 
-@media (min-width: 1286px) {
+.counter-string:after{
+	content: ' -';
+}
+
+@media (min-width: 480px) {
+	body {
+	  /*padding: 30px;*/
+	  font: 32px "Lucida Grande", Helvetica, Arial, sans-serif;
+	  /*background: green;*/
+	}
+
+	.container{
+		width: 100%;
+	}
+
+	.counter{
+		height: 300px;
+	}
+
+	#lern{
+		background: rgb(158, 219, 154);
+	}
+	
+	#sleep{
+		background: rgb(91, 158, 197);
+	}
+	
+	#joy{
+		background: rgb(219, 219, 154);
+	}
+	
+	#work{
+		background: rgb(158, 219, 219);
+	}
+
+	#other{
+		background: rgb(249, 219, 244);
+	}
+
+	.counter:hover {
+		margin-left: 0;
+	}
+
+}
+
+
+@media (min-width: 960px) {
 	body {
 	  padding: 30px;
 	  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 	  /*background: red;*/
 	}
+
+	.counter{
+		height: auto;
+	}
+
+	.container{
+		width: auto;
+	}
+	
+	#other, #lern, #joy, #sleep, #work {
+		background: white;
+	}
+
+	.counter:hover {
+		margin-left: 0.2em;
+	}
+
+
 }
+
+
+
 .wapper{
 	margin-top: 20px;
 }
@@ -31,10 +93,6 @@
 .counters-timer{
 	margin-top: 20px;
 }
-.counter:hover {
-	margin-left: 0.2em;
-}
-
 
 .counterActive {
 	opacity: 1;
