@@ -10,7 +10,9 @@ exports.post = function(req, res){
 
 	timer = require('../libs/timerLogic.js')(req, res);
 
-	console.log('===');
+	if(req.user){
+		console.log(req.user.username);
+	}
 
 	var responseObject;
 
