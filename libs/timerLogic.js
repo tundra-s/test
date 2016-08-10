@@ -178,6 +178,8 @@ var timer = function(req, res){
 			defaultObject.status = userDataBase.status = id;
 			log('Counter has been started ' + id);
 
+			console.log("User : " + req.user.username + " - start " + userDataBase.status);
+
 			writeDataBase();
 
 			return defaultObject;
