@@ -1,8 +1,26 @@
+
+@media (min-width: 768px) {
+	body {
+	  padding: 30px;
+	  /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
+	  /*background: green;*/
+	}
+}
+
+@media (min-width: 1286px) {
+	body {
+	  padding: 30px;
+	  /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
+	  /*background: red;*/
+	}
+}
+
+/*
 body {
   padding: 30px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
+*/
 .wapper{
 	margin-top: 20px;
 }
