@@ -256,7 +256,7 @@ var add = function(id, name){
 var get = function(d){
 	var status = null;
 
-	if(lastUpd && lastUpd.status){
+	if(lastUpd && (lastUpd.status || lastUpd.status === false)){
 		status = lastUpd.status;
 	}
 
