@@ -262,29 +262,13 @@ var timer = function(req, res){
 
 	var clear = function(){
 
-		console.log(dataBase[userName].history.length);
+		var clear = fs.readFileSync('./routes/clear.json');
 
-		var test = [];
+		fs.writeFileSync('./routes/test.json', clear);
 
-		for (var i = 0; i < dataBase[userName].history.length - 1; i++) {
-			test.push(dataBase[userName].history[i]);
-		}
+		log('clear - dataBase rewriten');
 
-
-		console.log('1 = ' + test.length);
-
-		dataBase[userName].status = false;
-		dataBase[userName].history = test;
-
-		writeDataBase();
-
-		dataBase = null;
-		userDataBase = null;
-		userToday = null;
-		readDataBase();
-		checkToday();
-
-		return getHistory();
+		return defaultObject;
 	}
 
 	return {
