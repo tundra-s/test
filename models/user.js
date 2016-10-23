@@ -21,6 +21,10 @@ var schema = new Schema ({
 		type: String,
 		required: true
 	},
+	data : {
+		type: Schema.Types.Mixed,
+		default : {}
+	},
 	created: {
 		type: Date,
 		default: Date.now
@@ -55,33 +59,14 @@ schema.statics.authorize = 	function(username, password, cb){
 			function(user, cb){
 				if(user){
 					if(user.checkPassword(password)){
-						
-						console.log('checkPassword : OK');
-
-						cb(null, user);
-					
+						cb(null, true, user);
 					}else{
-						
-						// Надо обработать , это временно 
-						cb(null, false);
-						// cb(new AuthError('Пароль неверен'));
-					
+						cb(null, false, {message : 'пароль не верен'});
 					}					
 				}else{
-
-					cb(null, false);
-
-					// убрал что бы не регистрировались все подряд
+					cb(null, false, {message : 'пользователь с таким именем не найден'});
 
 					// var user = new User({username: username, password: password});
-
-					// user.save(function(err){
-
-						// if(err) return cb(err);
-
-						// cb(null, user);
-
-					// })
 				}
 			}
 		], cb);

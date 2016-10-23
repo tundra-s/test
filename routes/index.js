@@ -4,16 +4,18 @@ module.exports = function(app){
 
 	// console.log(checkAuth());
 
-	app.get('/', require('./frontpage').get);
-	app.get('/home', checkAuth, require('./frontpage').get);
-	app.get('/login', require('./login').get);
-	app.post('/login', require('./login').post);
-	app.get('/logout',checkAuth, require('./logout').post);
-	// app.get('/chat', checkAuth , require('./chat').get);
-	app.get('/timer',checkAuth, require('./timer').get);
-	app.post('/timer',checkAuth, require('./timer').post);
+	app.get('/*', require('./frontpage').get);
+
+	// app.get('/home', checkAuth, require('./frontpage').get);
 
 }
+
+// app.get('/login', require('./login').get);
+// app.post('/login', require('./login').post);
+// app.get('/logout',checkAuth, require('./logout').post);
+// // app.get('/chat', checkAuth , require('./chat').get);
+// app.get('/timer',checkAuth, require('./timer').get);
+// app.post('/timer',checkAuth, require('./timer').post);
 
 // var User = require('../models/user').User;
 // var HttpError = require('../error').HttpError; 

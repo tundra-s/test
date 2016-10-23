@@ -47,12 +47,12 @@ app.use(express.session({
 app.use(require('./middleware/sendHttpError'));
 app.use(require('./middleware/loadUser'));
 
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(app.router); // Пример ниже 
 
 
 require('./routes')(app);
 
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function(err, req, res, next){
 
