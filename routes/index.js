@@ -6,6 +6,9 @@ module.exports = function(app){
 
 	app.get('/*', require('./frontpage').get);
 
+	app.post('/module', require('../frontend/routeModule.js').route);
+	// app.post('/call-module', require('../frontend/routeModule.js').call);
+
 	// app.get('/home', checkAuth, require('./frontpage').get);
 
 }

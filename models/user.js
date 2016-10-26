@@ -73,6 +73,18 @@ schema.statics.authorize = 	function(username, password, cb){
 
 }
 
+schema.statics.registration = function(username, password, cb){
+
+	this.findOne({username: username}, function(user){
+		if(!user){
+			var user = new User({username: username, password: password});
+			user.save();
+		}
+
+		
+	})
+}
+
 
 exports.User = mongoose.model('User', schema);
 
